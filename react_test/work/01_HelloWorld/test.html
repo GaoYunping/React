@@ -5,6 +5,9 @@
   <title>01_HelloWorld</title>
 </head>
 <body>
+  <div id="root">
+
+  </div>
 <!--
 1. 相关js库
   react.js: React的核心库
@@ -20,7 +23,18 @@
     ReactDOM.render(<h1>Hello, React!</h1>, document.getElementById('example'));
   </script>
 -->
-
+<script src="../js/react.js"></script>
+<script src="../js/react-dom.js"></script>
+<script src="../js/babel.min.js"></script>
+<script type="text/babel">
+  //页面中的真实容器元素
+  var root = document.getElementById("root");
+  //react的虚拟DOM对象
+  var vDom = <h1>hello , react</h1>
+  //将虚拟DOM对象渲染到页面元素中
+  ReactDOM.render(vDom,root)
+  //页面结果: <div id="demo"><div id="demo">Hello, React!</div></div>
+</script>
 
 </body>
 </html>
