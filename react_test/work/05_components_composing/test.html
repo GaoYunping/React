@@ -28,6 +28,46 @@
      * App: props.names    array
    */
 
+
+//定义祖组件
+class App extends React.Component{
+  constructor(props) {
+    super(props);
+    
+  }
+  render(){
+    let {names}=this.props;
+    console.log(this.props);
+    return(
+      <div>
+      {
+        names.map((item,index)=><Welcome  name={item} key={index}/>)
+
+      }
+      </div>
+    )
+  }
+  
+}
+App.propTypes={
+  names:React.PropTypes.array.isRequired
+}
+
+function Welcome(params) {
+
+  return <h2>Welcome{params.name}</h2>
+  
+}
+// Welcome.propTypes={
+//   name:React.PropTypes.string.isRuquired
+// }
+
+var names = ['Tom', 'Jack', "Bob"];
+
+
+ReactDOM.render(
+  <App names={names}/>,document.getElementById("example")
+)
 </script>
 </body>
 </html>
