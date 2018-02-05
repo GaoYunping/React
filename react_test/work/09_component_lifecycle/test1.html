@@ -41,6 +41,59 @@
     * 可以在componentWillUnmount()做一些收尾工作: 停止监听
     * 生命周期还有一个方法(后面需要时讲): componentWillReceiveProps
   */
+
+  class LifeCycle extends React.Component{
+    constructor(props) {
+      super(props);
+      console.log("constructor():创建组件对象");
+      this.state={
+        date: new Date().toLocaleString()
+      }
+    }
+  //组件将要挂载
+    componentWillMount() {
+      console.log("componentWillMount(): 组件将要挂载");
+      //发送ajax请求
+    }
+  //组件已经挂载
+    componentDidMount(){
+      console.log("componentDidMount(): 组件已经挂载");
+      this.intervalId=setInterval(() => {
+        this.setState({date: new Date().toLocaleString()})
+      }, 1000)
+    }
+  //组件将要更新
+    componentWillUpdate(){
+      console.log("componentWillUpdate(): 将要更新");
+    }
+  //组件已经更新完毕
+    componentDidUpdate(){
+      console.log("componentDidUpdate(): 已经更新完毕");
+    }
+  //组件将要移除
+    componentWillUnmount(){
+      console.log('componentWillUnmount(): 将要移除');
+      clearInterval(this.intervalId)
+    }
+
+    removeComp(){
+      //移除组件
+      ReactDOM.unmountComponentAtNode(document.getElementById('example'));
+    }
+   render () {
+     console.log("render(): 渲染内部虚拟DOM");
+     return (
+       <div>
+          <h2>{this.props.name}, 当前时间: {this.state.date}</h2>
+          <button onClick={this.removeComp}>移除组件</button>
+       </div>
+     )
+   } 
+  }
+
+  ReactDOM.render(
+    <LifeCycle  name="bj"/>,document.getElementById('example')
+  )
 </script>
 </body>
 </html>

@@ -15,6 +15,38 @@
    自定义组件:
    功能描述: 让指定的文本做显示/隐藏的动画
    */
+
+  class Opacity extends React.Component{
+    constructor(props) {
+      super(props);
+      this.state={
+        opacity:1
+      }
+
+    }
+
+    componentDidMount() {
+      setInterval(() => {
+        let {opacity} = this.state;
+        opacity-=0.05
+        if(opacity<0.05){
+           opacity=1
+        }
+        this.setState({opacity})
+      },100)
+    }
+    render () {
+      let {opacity}=this.state;
+      return (
+        <div style={{opacity:opacity}}>
+          www.baidu.com
+        </div>
+      )
+    }
+  }
+  ReactDOM.render(
+    <Opacity/>,document.getElementById('example')
+  )
 </script>
 </body>
 </html>

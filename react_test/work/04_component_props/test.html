@@ -60,35 +60,35 @@
     class Person extends React.Component{
       constructor(props) {
         super(props);
-        console.log(props);
+        console.log(props);//查看所有属性
       }      
       render(){ 
       return(
         <ul>
-          <li>name:{this.props.name}</li>
-          <li>age:{this.props.age}</li>
-          <li>sex:{this.props.sex}</li>
+          <li>姓名:{this.props.name}</li>
+          <li>年龄:{this.props.age}</li>
+          <li>性别:{this.props.sex}</li>
         </ul>) 
       } 
     }
+    //类型
     Person.propTypes={
       name: React.PropTypes.string.isRequired,
       sex: React.PropTypes.string.isRequired,
       age: React.PropTypes.number.isRequired
     };
+    //默认
     Person.defaultProps={
       sex:"男",
       age:20
     }
 
     //初始化数据
-    let person = {name: 'atguigu', sex: '女', age: 3};
+    let person = {name: 'atguigu', sex: '女', age: 13};
     //渲染组件
     //根据数据动态渲染组件标签
     /*ReactDOM.render(<Person name={person.name} age={person.age} sex={person.sex}/>,
       document.getElementById('example'));*/
-
-
     ReactDOM.render(
       <Person {...person}/>,document.getElementById("example")
     )

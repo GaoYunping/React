@@ -38,6 +38,38 @@
     1. 显示h2标题, 初始文本为: 你喜欢我
     2. 点击标题更新为: 我喜欢你
   */
+  class LikeMe extends React.Component {
+    constructor(props) {
+      super(props);
+  
+      this.state = {
+        isLikeMe:true
+      };
+    this.switchLikeMe = this.switchLikeMe.bind(this);
+    }
+
+    switchLikeMe(){
+      let isLikeMe = !this.state.isLikeMe;
+      this.setState({isLikeMe})
+    }
+    render() {
+        let text = this.state.isLikeMe ? "你喜欢我" :"我喜欢你"
+
+      return(
+        <div onClick={this.switchLikeMe}>
+              {text}
+        </div>
+      );
+    }
+  }
+  
+  LikeMe.propTypes = {
+  
+  };
+  
+   ReactDOM.render(
+     <LikeMe/>,document.getElementById('example')
+   )
 </script>
 </body>
 </html>

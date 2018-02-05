@@ -27,17 +27,19 @@
      * Welcome: props.name  string
      * App: props.names    array
    */
+//定义内务标题组件
+function Welcome(params) {
 
-
-//定义祖组件
+  return <h2>Welcome{params.name}</h2>
+  
+}
+//定义外部应用组件
 class App extends React.Component{
   constructor(props) {
     super(props);
-    
   }
   render(){
     let {names}=this.props;
-    console.log(this.props);
     return(
       <div>
       {
@@ -49,18 +51,10 @@ class App extends React.Component{
   }
   
 }
+
 App.propTypes={
   names:React.PropTypes.array.isRequired
 }
-
-function Welcome(params) {
-
-  return <h2>Welcome{params.name}</h2>
-  
-}
-// Welcome.propTypes={
-//   name:React.PropTypes.string.isRuquired
-// }
 
 var names = ['Tom', 'Jack', "Bob"];
 
@@ -68,6 +62,8 @@ var names = ['Tom', 'Jack', "Bob"];
 ReactDOM.render(
   <App names={names}/>,document.getElementById("example")
 )
+
+  r
 </script>
 </body>
 </html>

@@ -40,7 +40,80 @@
       1). 如果没有输入或输入的只是空格, 不添加到列表
       2). 如果输入的文本两边有空格, 去掉空格后添加
     */
+   class AddTodo extends React.Component{
+     constructor(props) {
+       super(props);
 
+       this.add=this.add.bind(this);
+     }
+
+     add(){
+       let value = this.refs.newTodo.value;
+       if(!value.trim()){
+         return;
+       }
+       this.props.add(value)
+       this.refs.newTodo.value=""
+     }
+     render () {
+       return (
+         <div>
+            <input ref="newTodo" type="text" />
+            <button onClick={this.add}>Add #{this.props.length}</button>
+         </div>
+       )
+     }
+   }
+  class TodoList extends React.Component{
+    constructor(props) {
+      super(props);
+      
+    }
+    render () {
+      let {todoList} = this.props
+      return (
+        <ul>
+        {
+          todoList.map((item,index)=><li key={index}>{item}</li>)
+        }
+        
+        </ul>
+      )
+    }
+    
+  }
+   class App extends React.Component{
+     constructor(props){
+       super(props)
+
+       this.state={
+         todoList : ['吃饭', '睡觉', '打豆豆', '学习']
+       }
+       this.add = this.add.bind(this);
+     }
+    add(newTodo){
+      let todoList=this.state.todoList;
+      todoList.unshift(newTodo);
+      this.setState({todoList})
+    }
+
+    render () {
+      let {todoList}= this.state;
+      
+      return (
+        <div>
+          <h2>Simple TODO List</h2>
+          <AddTodo add={this.add} length={this.state.todoList.length}/>
+          <TodoList todoList={todoList}/>
+        </div>
+      )
+    }
+
+   }
+   //渲染组件
+   ReactDOM.render(
+     <App/>,document.getElementById('example')
+   )
   </script>
 </body>
 </html>

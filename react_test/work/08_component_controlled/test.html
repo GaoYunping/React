@@ -29,6 +29,34 @@
     3. 输入数据时, 下面的数据同步变化
   */
 
+
+class App extends React.Component{
+  constructor(props) {
+    super(props);
+    this.state={
+      msg:"aini"
+    }
+    this.changFun = this.changFun.bind(this);
+  }
+  changFun(ev){
+    this.setState({
+      msg:ev.target.value
+    })
+  }
+  render () {
+    let {msg} =this.state;
+    let {changFun}=this
+    return (
+      <div>
+        <input type="text" onChange={changFun} value={msg}/>
+        <p>{msg}</p>
+      </div>
+    )
+  }
+}
+ReactDOM.render(
+  <App/>,document.getElementById('example')
+)
 </script>
 </body>
 </html>

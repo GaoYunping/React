@@ -15,6 +15,7 @@
   <script src="../js/react.js"></script>
   <script src="../js/react-dom.js"></script>
   <script src="../js/babel.min.js"></script>
+
   <script type="text/babel">
     /*
     1. 组件的3大属性之二: refs属性
@@ -46,6 +47,38 @@
       2. 点击按钮, 提示第一个输入框中的值
       3. 当第2个输入框失去焦点时, 提示这个输入框中的值
     */
+
+
+    class RefsTest extends React.Component{
+      constructor(props){
+        super(props);
+        this.showMsg=this.showMsg.bind(this);// 强制给showMsg()绑定this(组件对象)
+        this.handleBlur=this.handleBlur.bind(this);
+      }
+      showMsg(){
+         // console.log(this); //this默认是null, 而不组件对象
+          const input = this.refs.msg;
+          alert(input.value)
+          
+      }
+      handleBlur(ev){
+        const input = ev.target;
+        alert(input.value)
+      }
+      render () {
+        return (
+          <div>
+            <input type="text" ref="msg"/>
+            <button onClick={this.showMsg}>提示输入数据</button>
+            <input type="text" placeholder="失去焦点提示数据" onBlur={this.handleBlur}/>
+          </div>
+        )
+      }
+    }
+    ReactDOM.render(
+        <RefsTest></RefsTest>,document.getElementById("example")
+    )
+    
   </script>
 </body>
 </html>
