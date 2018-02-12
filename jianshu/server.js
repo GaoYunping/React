@@ -20,6 +20,6 @@ app.get('/*', (req, res)=> res.sendFile(dfPath.src + '/index.html') )
 
 app.listen(port, (error)=>{
     if(!error){
-        console.log('');
+        console.log('localhost:9002');
     }
 });
