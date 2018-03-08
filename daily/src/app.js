@@ -1,0 +1,2 @@
+
+require('./component/demo.js');
